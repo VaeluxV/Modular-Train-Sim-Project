@@ -22,7 +22,7 @@ template<typename T>
 void sendVariable(const char* varName, T varValue, uint8_t address = DEVICE_ADDRESS) {
   Wire.beginTransmission(address);  // Begin transmission to the I2C device
   Wire.write(varName);  // Send the variable name
-  Wire.write(':');  // Send a separator (optional)
+  Wire.write(':');  // Send a separator
   Wire.write(reinterpret_cast<const uint8_t*>(&varValue), sizeof(T));  // Send the variable value
   Wire.endTransmission();  // End transmission
 }
