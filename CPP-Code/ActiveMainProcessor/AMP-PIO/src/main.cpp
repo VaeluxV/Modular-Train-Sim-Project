@@ -9,6 +9,15 @@ int myIntVariable;
 float myFloatVariable;
 char myCharVariable;
 
+int throttle;
+int rawThrottle;
+int combinedThrottleBrake;
+int rawCombinedThrottleBrake;
+int brake;
+int rawBrake;
+int reverser;
+int rawReverser;
+
 // Function prototypes
 void receiveEvent(int bytes);
 bool compareType(const char* varName, const char* typeName);
@@ -72,6 +81,38 @@ void receiveEvent(int bytes) {
     } else {
       printError("Type mismatch for myCharVariable");
     }
+  } else if (strcmp(varName, "rawThrottle") == 0) {
+    int value;
+    Wire.readBytes(reinterpret_cast<char*>(&value), sizeof(value));
+    if (compareType(varName, "int")) {
+      rawThrottle = value;
+    } else {
+      printError("Type mismatch for rawThrottle");
+    }
+  } else if (strcmp(varName, "rawCombinedThrottleBrake") == 0) {
+    int value;
+    Wire.readBytes(reinterpret_cast<char*>(&value), sizeof(value));
+    if (compareType(varName, "int")) {
+      rawCombinedThrottleBrake = value;
+    } else {
+      printError("Type mismatch for rawCombinedThrottleBrake");
+    }
+  } else if (strcmp(varName, "rawBrake") == 0) {
+    int value;
+    Wire.readBytes(reinterpret_cast<char*>(&value), sizeof(value));
+    if (compareType(varName, "int")) {
+      rawBrake = value;
+    } else {
+      printError("Type mismatch for rawBrake");
+    }
+  } else if (strcmp(varName, "rawReverser") == 0) {
+    int value;
+    Wire.readBytes(reinterpret_cast<char*>(&value), sizeof(value));
+    if (compareType(varName, "int")) {
+      rawReverser = value;
+    } else {
+      printError("Type mismatch for rawReverser");
+    }
   } else {
     printError("Unknown variable name");
   }
@@ -93,6 +134,14 @@ bool compareType(const char* varName, const char* typeName) {
   } else if (strcmp(varName, "myFloatVariable") == 0 && strcmp(typeName, "float") == 0) {
     return true;
   } else if (strcmp(varName, "myCharVariable") == 0 && strcmp(typeName, "char") == 0) {
+    return true;
+  } else if (strcmp(varName, "rawThrottle") == 0 && strcmp(typeName, "int") == 0) {
+    return true;
+  } else if (strcmp(varName, "rawCombinedThrottleBrake") == 0 && strcmp(typeName, "int") == 0) {
+    return true;
+  } else if (strcmp(varName, "rawBrake") == 0 && strcmp(typeName, "int") == 0) {
+    return true;
+  } else if (strcmp(varName, "rawReverser") == 0 && strcmp(typeName, "int") == 0) {
     return true;
   }
   return false;

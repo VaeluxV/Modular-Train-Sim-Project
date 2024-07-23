@@ -10,6 +10,9 @@
   @param address The I2C device address (default is defined by DEVICE_ADDRESS)
 */
 
+int sensorVal = 0;
+int calcSensorVal = 0;
+
 template<typename T>
 void sendVariable(const char* varName, T varValue, uint8_t address = DEVICE_ADDRESS) {
   Wire.beginTransmission(address);  // Begin transmission to the I2C device
