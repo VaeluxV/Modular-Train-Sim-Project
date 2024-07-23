@@ -117,9 +117,13 @@ void receiveEvent(int bytes) {
     printError("Unknown variable name");
   }
 
-  Serial.println(myIntVariable);
-  Serial.println(myFloatVariable);
-  Serial.println(myCharVariable);
+  Serial.print(rawThrottle);
+  Serial.print(" | ");
+  Serial.print(rawCombinedThrottleBrake);
+  Serial.print(" | ");
+  Serial.print(rawBrake);
+  Serial.print(" | ");
+  Serial.println(rawReverser);
 }
 
 /*
