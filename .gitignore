@@ -34,3 +34,15 @@ CPP-Code/Wireless/MainD1WirelessControl_old/test/README
 CPP-Code/Wireless/MainD1WirelessControl_old/.gitignore
 CPP-Code/Wireless/MainD1WirelessControl_old/platformio.ini
 CPP-Code/Wireless/MainD1WirelessControl_old/src/main.cpp
+CPP-Code/RemoteD1WirelessControl/test/README
+CPP-Code/RemoteD1WirelessControl/lib/README
+CPP-Code/RemoteD1WirelessControl/include/README
+CPP-Code/MainD1WirelessControl_old/test/README
+CPP-Code/RemoteD1WirelessControl/.vscode/extensions.json
+CPP-Code/MainD1WirelessControl_old/include/README
+CPP-Code/MainD1WirelessControl_old/lib/README
+CPP-Code/MainD1WirelessControl_old/.vscode/extensions.json
+CPP-Code/MainD1WirelessControl/test/README
+CPP-Code/MainD1WirelessControl/lib/README
+CPP-Code/MainD1WirelessControl/include/README
+CPP-Code/MainD1WirelessControl/.vscode/extensions.json
