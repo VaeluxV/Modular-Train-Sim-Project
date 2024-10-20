@@ -4,7 +4,6 @@
 #include <Update.h>
 #include <ArduinoJson.h>
 #include <painlessMesh.h>
-#include <LoadConfig.h>
 
 #define FORMAT_SPIFFS_IF_FAILED false
 
