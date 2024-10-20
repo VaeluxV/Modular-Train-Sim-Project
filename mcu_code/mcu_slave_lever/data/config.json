@@ -1,0 +1,8 @@
+{
+    "meshName": "traincabmesh",
+    "meshPassword": "traincabmesh_ABCDEFG123456",
+    "meshPort": 5555,
+    "deviceType": "slave",
+    "deviceID": "throttle_brake"
+}
+  
