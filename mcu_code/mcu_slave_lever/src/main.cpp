@@ -10,6 +10,15 @@
 unsigned long previousMillis = 0;   // For tracking time between updates
 unsigned long updateInterval = 100; // Update interval in ms (0.1 second)
 
+int rawSensorData; // For storing the raw sensor data
+int prevRawSensorData; // For storing the previous sensor data
+
+int processedSensorData; // For storing the processed sensor data (example: smoothed out data)
+int prevProcessedSensorData; // For storing previous state of processed sensor data. Used for the program to know if it needs to send new sensor data or not
+
+int sensor0Pin;
+
+int sensorUpdateRate; // How many readings per second you want the sensors to take. Default: 120, you can change this in the config.
 /* ---  Mesh data  --- */
 String meshName;
 String meshPassword;
@@ -28,7 +37,8 @@ void setupMesh();
 void receivedCallback(uint32_t from, String &msg);
 void newConnectionCallback(uint32_t nodeId);
 void sendMessageToMesh(String msg);
-void read_sensor_data();
+float smoothSensorData();
+void sensorReading();
 
 // Loads and parses the configuration (config.json) file
 void loadConfig()
@@ -67,6 +77,8 @@ void loadConfig()
   meshPort = doc["meshPort"].as<int>();            // Port for the mesh network, has to be the same on all devices.
   deviceType = doc["deviceType"].as<String>();     // "slave" or "master"
   deviceID = doc["deviceID"].as<String>();         // Unique device ID
+  sensorUpdateRate = doc["sensorUpdateRate"].as<int>(); // Get the sensor update rate (in times per second), 120 by default
+  sensor0Pin = doc["sensor0Pin"].as<int>();            // Sensor 0 physical pin connection
 }
 
 // Initialize mesh network
@@ -91,9 +103,29 @@ void sendMessageToMesh(String msg) {
   mesh.sendBroadcast(msg.c_str());  // Broadcast message to all connected devices
 }
 
-void read_sensor_data()
+/*
+sensorDataIn -> input raw sensor data value | decimals -> how many numbers behind the decimal poin should the function return? (Example: decimals = 1 will result in values such as: 1.5, 81.1
+decimals = 3 will result in values such as: 24.348, 67.157)
+smoothingFactor, the higher this is the smoother output will be but it will become less responsive, recommended default: 0.1. Minimum - maximum values: 0 - 1
+*/
+float smoothSensorData(int sensorDataIn, int decimals, float smoothingFactor) 
 {
-  // Placeholder
+    // Define a static variable to store the previous smoothed value
+    static float smoothedValue = 0.0;
+
+    // Calculate the smoothed value using a basic exponential moving average
+    smoothedValue = (sensorDataIn * smoothingFactor) + (smoothedValue * (1.0 - smoothingFactor));
+
+    // Calculate the rounding factor based on the desired decimal places
+    float roundingFactor = pow(10, decimals);
+
+    // Return the smoothed value rounded to the specified decimal places
+    return round(smoothedValue * roundingFactor) / roundingFactor;
+}
+
+void sensorReading()
+{
+  // Read the sensors
 }
 
 void setup()
@@ -126,7 +158,10 @@ void setup()
   Serial.println(deviceID.c_str());
 
   setupMesh();  // Initialize mesh network
+
+  pinMode(sensor0Pin, INPUT);
 }
+
 void loop()
 {
   mesh.update();  // Handle mesh tasks

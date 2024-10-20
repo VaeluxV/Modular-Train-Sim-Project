@@ -3,6 +3,8 @@
     "meshPassword": "traincabmesh_ABCDEFG123456",
     "meshPort": 5555,
     "deviceType": "slave",
-    "deviceID": "throttle_brake"
+    "deviceID": "throttle_brake",
+    "sensorUpdateRate": 120,
+    "sensor0Pin": 34
 }
   
