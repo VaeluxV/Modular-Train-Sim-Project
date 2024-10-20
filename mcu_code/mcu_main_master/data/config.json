@@ -1,6 +1,7 @@
 {
     "meshName": "traincabmesh",
     "meshPassword": "traincabmesh_ABCDEFG123456",
+    "meshPort": 5555,
     "deviceType": "master",
     "deviceID": "master"
 }
