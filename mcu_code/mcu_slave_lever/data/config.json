@@ -4,7 +4,10 @@
     "meshPort": 5555,
     "deviceType": "slave",
     "deviceID": "throttle_brake",
-    "sensorUpdateRate": 120,
-    "sensor0Pin": 34
+    "sensorUpdateRate": 60,
+    "sensor0Pin": 34,
+    "sensor0Smoothing": 10,
+    "sensor0MinValue": 0,
+    "sensor0MaxValue": 4095
 }
   
