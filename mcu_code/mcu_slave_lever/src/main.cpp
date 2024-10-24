@@ -183,8 +183,6 @@ void sensorReading()
       Serial.println(sensor0Percentage);
     }
 
-    
-
     // prevRawSensor0Data = rawSensor0Data;
     // prevProcessedSensor0Data = processedSensor0Data;
     prevSensor0Percentage = sensor0Percentage;
