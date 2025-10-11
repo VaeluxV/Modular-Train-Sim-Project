@@ -1,5 +1,5 @@
 # Modular-Train-Sim-Project
-A modular train sim cab project made for arduino. Communicating internally using painlessmesh, the main Arduino/Microcontroller requires HID capability (You can use a Pro Mico, Leonardo, etc. for this). The secondary/remote microcontroller has to support Painlessmesh meaning only chips such as an ESP32 will be supported. 
+A modular train sim cab project made for arduino. Communicating internally using UART, the main Arduino/Microcontroller requires HID capability (You can use a Pro Mico, Leonardo, etc. for this). 
 
 <p>This is still work in progress. <i><b>Currently unfinished!</b></i></p>
 
